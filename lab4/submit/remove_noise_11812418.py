@@ -31,8 +31,7 @@ def reduce_SAP_11812418(input_image, n_size):
 
 
 start_time = time.time()
-img_new_arr = reduce_SAP_11812418("Q3_4.tif", 3)
+img_new_arr = reduce_SAP_11812418("Q4_2.tif", 3)
 op_image = Image.fromarray(img_new_arr.astype(np.uint8))
 print("--- %s seconds ---" % (time.time() - start_time))
-op_image.save("output/img/mid_filter/Q3_4_M.tif")
-op_image.save("output/img/mid_filter/Q3_4_M.png")
+op_image.save("Q4_2_remove_noise.tif")
