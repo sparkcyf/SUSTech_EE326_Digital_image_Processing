@@ -6,9 +6,6 @@ import time
 import lab5_lib
 
 
-
-
-
 def conv(input_img, kernel_flat):
     row, col = input_img.shape
 
@@ -40,6 +37,7 @@ def sobel_11812418(input_img):
 
     # FFT transform for img arr
     img_arr = np.asarray(img)
+    input_image_origin = np.asarray(img)
 
     row, col = img_arr.shape
 
@@ -54,9 +52,7 @@ def sobel_11812418(input_img):
 
     kernel1 = np.array([[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]])
 
-    DFT_kernel_1_fft = lab5_lib.DFT_kernel(img_arr,kernel1)
-
-
+    DFT_kernel_1_fft = lab5_lib.DFT_kernel(img_arr, kernel1)
 
     # K1
     filtered_1 = np.real(np.fft.ifft2(img_arr_fft * DFT_kernel_1_fft))
@@ -65,23 +61,27 @@ def sobel_11812418(input_img):
     # plt.imshow(filtered_1)
     # plt.show()
 
-
-
     # conv
     # op_img = np.fft.ifft2(conv(img_arr, kernel_flat))
     # print(filtered_1)
-    op_img = lab5_lib.normalize(filtered_1)*255
-    op_img = np.clip(op_img, 110, 140)
+    op_img = lab5_lib.normalize(filtered_1) * 255
+    op_img = np.clip(op_img, 115, 145)
+    op_img = lab5_lib.normalize(op_img)*255
     print(op_img)
 
     plt.imshow(op_img)
     plt.show()
 
-    return op_img
+    op_img_spacial = conv(input_image_origin,kernel1.flatten())
+    op_img_spacial = lab5_lib.normalize(op_img_spacial)*255
+
+    return op_img, op_img_spacial
 
 
 start_time = time.time()
-A = sobel_11812418("Q5_1.tif")
+A, A_S = sobel_11812418("Q5_1.tif")
 op_image = Image.fromarray(A.astype(np.uint8))
+op_image_S = Image.fromarray(A_S.astype(np.uint8))
 print("--- %s seconds ---" % (time.time() - start_time))
 op_image.save("output/Q5_1_M.tif")
+op_image_S.save("output/Q5_1_M_S.tif")
