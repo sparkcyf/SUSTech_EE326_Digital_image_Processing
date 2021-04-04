@@ -34,6 +34,7 @@ def transform_centering(input_img):
 def DFT_kernel(input_image_padded, kernel):
     sz = (input_image_padded.shape[0] - kernel.shape[0], input_image_padded.shape[1] - kernel.shape[1])
     DFT_kernel_1 = np.pad(kernel, (((sz[0] + 1) // 2, sz[0] // 2), ((sz[1] + 1) // 2, sz[1] // 2)), 'constant')
+    DFT_kernel_1 = multiply_center(DFT_kernel_1)
     DFT_kernel_1_fft = np.fft.fft2(DFT_kernel_1)
     return DFT_kernel_1_fft
 
@@ -49,10 +50,10 @@ def generate_gaussian(a, b, sigma):
 
 
 
-def generate_butterworth(row, col, n, sigma):
+def generate_butterworth(row, col, n, sigma, cr, cc):
     x, y = np.meshgrid(np.linspace(0, col - 1, col), np.linspace(0, row - 1, row))
-    x = x - col / 2
-    y = y - row / 2
+    x = x - cr
+    y = y - cc
     d = np.sqrt(x * x + y * y)
     h = 1 / ((1 + (d / sigma)) ** (2 * n))
     return h
