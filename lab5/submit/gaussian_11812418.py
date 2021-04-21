@@ -60,3 +60,5 @@ if __name__ == '__main__':
         op_image_GL.save("output/Q5_2_LP" + str(i) + "_F.png")
         op_image_GH = Image.fromarray(G_HP.astype(np.uint8))
         op_image_GH.save("output/Q5_2_HP" + str(i) + "_F.png")
+
+# fff男男女女男男女女nnnnnnnnnnnnnnnnffffffffffffnnnnnnnnnnnnnnn
