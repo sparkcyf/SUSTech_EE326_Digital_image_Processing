@@ -1,3 +1,7 @@
 [submodule "SUSTech-EE326-Digital-image-Processing-Project"]
 	path = SUSTech-EE326-Digital-image-Processing-Project
 	url = https://github.com/sparkcyf/SUSTech-EE326-Digital-Image-Processing-Project.git
+[submodule "SUSTech-EE326-Digital-Image-Processing-Project"]
+	path = SUSTech-EE326-Digital-Image-Processing-Project
+	url = https://github.com/sparkcyf/SUSTech-EE326-Digital-Image-Processing-Project.git
+	branch = main
